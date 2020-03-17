@@ -17,7 +17,7 @@ This environment is formed by 4 containers interacting with each other in the fo
 1. Navigate to the project root folder. 
 1. In a terminal, run: 
     ```bash
-    docker-compose up -d. 
+    docker-compose up -d
     ```
   This command will create all the docker images and containers necessary to run your environment. 
 1. When all the containers are up and running, you can open your browser and hit http://localhost:5000 to reach the homepage of the Flask app, or hit http://localhost:8081/images/<image> to check some of the static content.
