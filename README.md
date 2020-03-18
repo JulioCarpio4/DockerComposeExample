@@ -20,13 +20,13 @@ This environment is formed by 4 containers interacting with each other in the fo
     docker-compose up -d
     ```
   This command will create all the docker images and containers necessary to run your environment. 
-1. When all the containers are up and running, you can open your browser and hit http://localhost:5000 to reach the homepage of the Flask app, or hit http://localhost:8081/images/<image> to check some of the static content.
+1. When all the containers are up and running, you can open your browser and hit http://localhost/flask to reach the homepage of the Flask app, or hit http://localhost/images/<image> to check some of the static content. If you hit http://localhost, you will see a static page from the nginx proxy container. 
   
 ## How this example works: 
-- When you hit http://localhost:5000, you’re actually reaching the first NgInx container that is acting as the reverse proxy server. This container then redirects your request to the python container running the flask application on port 5000. 
+- When you hit http://localhost/flask, you’re actually reaching the first NgInx container that is acting as the reverse proxy server. This container then redirects your request to the python container running the flask application on port 5000. 
 - Every time you hit the home page of the Flask app, it will increment a variable stored in a redis container that stores the number of times home page has been visited. The value of this variable will be visible in your browser, with the message “This page has been visited <N> times”. 
-- Then, if you hit http://localhost:8081, the reverse proxy will redirect your request to the second NgInx container, which is serving static content in port 8081. Only the first NgInx container is exposed, while the other ones are private containers, not reachable from outside docker daemon. 
+- Then, if you hit http://localhost/images/<filename>, the reverse proxy will redirect your request to the second NgInx container, which is serving static content in its port 80. Only the first NgInx container is exposed, while the other ones are private containers, not reachable from outside docker daemon. 
   
-Feel free to modify the source code and to add whatever static content you want to the application. Also feel free to modify the docker-compose file to explore and learn other benefits of docker. 
+Feel free to modify the source code and to add whatever static content you want to the application (you can add your files in the images folder of the nginx static files path). Also feel free to modify the docker-compose file to explore and learn other benefits of docker. 
 
 Thanks for using this repo! 
