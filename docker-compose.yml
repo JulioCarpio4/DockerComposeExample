@@ -2,8 +2,6 @@ version: '3'
 services:
     flaskapp:
         build: ./Flask
-        #ports:
-        #    - "5000:5000"
         depends_on:
             - redis
         hostname: flaskapp
@@ -15,11 +13,11 @@ services:
         #ports: 
         #    - "80:80"
         hostname: nginxfiles
+        volumes: 
+            - ./nginxfiles/images:/data/images
     nginxproxy: 
         build: ./nginxproxy
         ports: 
-            - "8081:8081"
-            - "5000:5000"
             - "80:80"
         hostname: nginxproxy
         depends_on: 
